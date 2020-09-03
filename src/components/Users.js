@@ -28,6 +28,7 @@ function Users() {
             data.users.map(({ id, firstName, lastName, email }) => (
               <UserCard
                 key={id}
+                id={id}
                 email={email}
                 firstName={firstName}
                 lastName={lastName}
