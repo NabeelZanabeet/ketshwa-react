@@ -4,7 +4,7 @@ import { Users, UserForm } from './components';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://ketshwa-heruko.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
 
