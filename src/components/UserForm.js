@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import { gql, useMutation } from '@apollo/client';
+import { validateEmail } from '../utils/validaters';
 
 const CREAT_USER = gql`
   mutation CreatUser($firstName: String!, $lastName: String!, $email: String!) {
@@ -31,7 +32,7 @@ function UserForm() {
   const classes = useStyles();
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState({ value: '', error: '' });
   const onCompleted = () => {
     window.location.reload();
   };
@@ -49,11 +50,21 @@ function UserForm() {
   };
 
   const onChangeEmail = (event) => {
-    setEmail(event.target.value);
+    setEmail({ value: event.target.value, error: '' });
+  };
+
+  const validateInputs = () => {
+    const emailErr = validateEmail(email.value);
+    setEmail({ ...email, error: emailErr });
+    return firstName && lastName && email.value && !emailErr;
   };
 
   const onSubmit = () => {
-    creatUser({ variables: { id: 'ss', firstName, lastName, email } }).then();
+    if (validateInputs()) {
+      creatUser({
+        variables: { firstName, lastName, email: email.value },
+      }).then();
+    }
   };
 
   return (
@@ -76,12 +87,14 @@ function UserForm() {
         onChange={onChangeLastName}
       />
       <TextField
+        error={!!email.error}
         id="filled-basic"
         required
         className={classes.input}
         label="Email"
         variant="filled"
         onChange={onChangeEmail}
+        helperText={email.error}
       />
       <Button
         variant="contained"
@@ -89,7 +102,7 @@ function UserForm() {
         color="primary"
         href=""
         endIcon={<Icon>send</Icon>}
-        disabled={!(firstName && lastName && email)}
+        disabled={!(firstName && lastName && email.value)}
         onClick={onSubmit}
       >
         Submit
