@@ -1,0 +1,60 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 60px;
+  margin-top: 80px;
+  padding: 15px;
+}
+
+.title {
+  color: black;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 8px;
+}
+
+.firstName-input {
+  margin: 15px;
+  padding: 10px;
+  height: 20px;
+  width: 220px;
+  border-radius: 2px;
+  border: 0;
+}
+.lastName-input {
+  margin: 15px;
+  padding: 10px;
+  height: 20px;
+  width: 220px;
+  border-radius: 2px;
+  border: 0;
+}
+.email-input {
+  margin: 15px;
+  padding: 10px;
+  height: 20px;
+  width: 220px;
+  border-radius: 2px;
+  border: 0;
+}
+
+.button {
+  height: 50px;
+  width: 240px;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 2px;
+  border: 0;
+  background-color: #282c34;
+  margin: 15px 15px 30px;
+}
+
+input:focus{
+  outline: none;
+}

@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(() => ({
   paper: {
+    backgroundColor: '#d2cdc0',
     padding: 10,
     margin: 15,
   },
